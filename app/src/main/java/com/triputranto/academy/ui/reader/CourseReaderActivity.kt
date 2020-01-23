@@ -6,6 +6,7 @@ import androidx.lifecycle.ViewModelProvider
 import com.triputranto.academy.R
 import com.triputranto.academy.ui.reader.content.ModuleContentFragment
 import com.triputranto.academy.ui.reader.list.ModuleListFragment
+import com.triputranto.academy.viewmodel.ViewModelFactory
 
 /**
  * Created by Ahmad Tri Putranto on 22/01/2020.
@@ -20,10 +21,8 @@ class CourseReaderActivity : AppCompatActivity(), CourseReaderCallback {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_course_reader)
 
-        val viewModel = ViewModelProvider(
-            this,
-            ViewModelProvider.NewInstanceFactory()
-        )[CourseReaderViewModel::class.java]
+        val factory = ViewModelFactory.getInstance(this)
+        val viewModel = ViewModelProvider(this, factory)[CourseReaderViewModel::class.java]
 
         val bundle = intent.extras
         if (bundle != null) {
