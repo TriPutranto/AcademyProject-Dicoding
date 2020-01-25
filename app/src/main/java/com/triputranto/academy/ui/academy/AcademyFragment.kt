@@ -6,6 +6,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
+import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.triputranto.academy.R
@@ -30,10 +31,15 @@ class AcademyFragment : Fragment() {
 
             val factory = ViewModelFactory.getInstance(requireActivity())
             val viewModel = ViewModelProvider(this, factory)[AcademyViewModel::class.java]
-            val courses = viewModel.getCourses()
 
             val academyAdapter = AcademyAdapter()
-            academyAdapter.setCourses(courses)
+            progress_bar.visibility = View.VISIBLE
+            viewModel.getCourses().observe(this, Observer { courses ->
+                progress_bar.visibility = View.GONE
+                academyAdapter.setCourses(courses)
+                academyAdapter.notifyDataSetChanged()
+            })
+
             with(rv_academy) {
                 layoutManager = LinearLayoutManager(context)
                 setHasFixedSize(true)
