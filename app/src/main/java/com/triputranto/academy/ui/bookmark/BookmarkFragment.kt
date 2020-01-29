@@ -11,7 +11,7 @@ import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.triputranto.academy.R
-import com.triputranto.academy.data.CourseEntity
+import com.triputranto.academy.data.source.local.entitiy.CourseEntity
 import com.triputranto.academy.viewmodel.ViewModelFactory
 import kotlinx.android.synthetic.main.fragment_bookmark.*
 
@@ -42,11 +42,9 @@ class BookmarkFragment : Fragment(), BookmarkFragmentCallback {
                 adapter.notifyDataSetChanged()
             })
 
-            with(rv_bookmark) {
-                layoutManager = LinearLayoutManager(context)
-                setHasFixedSize(true)
-                this.adapter = adapter
-            }
+            rv_bookmark.layoutManager = LinearLayoutManager(context)
+            rv_bookmark.setHasFixedSize(true)
+            rv_bookmark.adapter = adapter
         }
     }
 

@@ -3,7 +3,6 @@
     <string name="title_activity_detail_course">Detail Course</string>
 
     <!-- TODO: Remove or change this placeholder text -->
-    <string name="hello_blank_fragment">Hello blank fragment</string>
 
     <string name="title">Title</string>
     <string name="description">Description</string>
@@ -17,9 +16,6 @@
     <string name="menu_bookmark">bookmark</string>
     <string name="next">Next</string>
     <string name="previous">Previous</string>
-    <string name="last_seen">Terakhir dilihat</string>
-    <string name="message_undo">Batalkan menghapus item sebelumnya?</string>
-    <string name="message_ok">OK</string>
     <string name="deadline_date">Deadline %s</string>
     <string name="share_text">Segera daftar kelas %s di dicoding.com</string>
 

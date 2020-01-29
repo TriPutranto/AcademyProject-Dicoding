@@ -5,7 +5,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.triputranto.academy.R
-import com.triputranto.academy.data.ModuleEntity
+import com.triputranto.academy.data.source.local.entitiy.ModuleEntity
 import kotlinx.android.synthetic.main.items_module_list.view.*
 
 /**

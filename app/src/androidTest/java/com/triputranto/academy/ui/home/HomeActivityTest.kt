@@ -4,6 +4,7 @@ import androidx.recyclerview.widget.RecyclerView
 import androidx.test.espresso.Espresso.onView
 import androidx.test.espresso.IdlingRegistry
 import androidx.test.espresso.action.ViewActions.click
+import androidx.test.espresso.action.ViewActions.pressBack
 import androidx.test.espresso.assertion.ViewAssertions.matches
 import androidx.test.espresso.contrib.RecyclerViewActions
 import androidx.test.espresso.matcher.ViewMatchers.*
@@ -30,6 +31,7 @@ class HomeActivityTest {
     fun setUp() {
         IdlingRegistry.getInstance().register(EspressoIdlingResource.espressoTestIdlingResource)
     }
+
     @After
     fun tearDown() {
         IdlingRegistry.getInstance().unregister(EspressoIdlingResource.espressoTestIdlingResource)
@@ -91,12 +93,25 @@ class HomeActivityTest {
 
     @Test
     fun loadBookmarks() {
-        onView(withText((R.string.bookmark))).perform(click())
-        onView(withId(R.id.rv_bookmark)).check(matches(isDisplayed()))
-        onView(withId(R.id.rv_bookmark)).perform(
-            RecyclerViewActions.scrollToPosition<RecyclerView.ViewHolder>(
-                dummyCourse.size
+        onView(withId(R.id.rv_academy)).perform(
+            RecyclerViewActions.actionOnItemAtPosition<RecyclerView.ViewHolder>(
+                0,
+                click()
             )
         )
+        onView(withId(R.id.action_bookmark)).perform(click())
+        onView(isRoot()).perform(pressBack())
+        onView(withText("Bookmark")).perform(click())
+        onView(withId(R.id.rv_bookmark)).check(matches(isDisplayed()))
+        onView(withId(R.id.rv_bookmark)).perform(
+            RecyclerViewActions.actionOnItemAtPosition<RecyclerView.ViewHolder>(
+                0,
+                click()
+            )
+        )
+        onView(withId(R.id.text_title)).check(matches(isDisplayed()))
+        onView(withId(R.id.text_date)).check(matches(isDisplayed()))
+        onView(withId(R.id.action_bookmark)).perform(click())
+        onView(isRoot()).perform(pressBack())
     }
 }
